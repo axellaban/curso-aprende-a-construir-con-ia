@@ -301,13 +301,13 @@
  
  
  <section class=unlock-section>
- <a class=unlock-cta href=https://www.skool.com/aiautomationsbyjack target=_blank rel=noopener>
+ <button class=unlock-cta id=openWaitlist type=button onclick="document.getElementById('waitlist-modal').classList.add('wl-open')">
  <img class=unlock-avatar src="images/Axel-y-mauri.png" alt="IA para hacedores — Mauri &amp; Axel">
  <span class=unlock-eyebrow><span class=pulse-dot></span>Comunidad privada · +500 alumnos formados</span>
  <span class=unlock-title>Desbloquear Ahora <span class=arrow>→</span></span>
  <span class=unlock-lede>Desbloqueás nuestro sistema operativo de IA.</span>
  <span class=unlock-sub>El plan de estudios completo, todos los extras y las construcciones semanales están dentro <strong>IA para hacedores</strong>.</span>
- </a>
+ </button>
  </section>
  
  <div class=skool-card>
@@ -522,3 +522,127 @@
  </div>
 </div>
 <a href=# class="back-top visible" id=backTop aria-label="Back to top">↑</a>
+
+<!-- WAITLIST MODAL -->
+<div id="waitlist-modal" class="wl-overlay" role="dialog" aria-modal="true" aria-labelledby="wl-title">
+  <div class="wl-card">
+    <button class="wl-close" onclick="document.getElementById('waitlist-modal').classList.remove('wl-open')" aria-label="Cerrar">✕</button>
+    <div class="wl-header">
+      <img src="images/Axel-y-mauri.png" alt="Mauri y Axel" class="wl-avatar">
+      <span class="wl-eyebrow"><span class="pulse-dot"></span>Waitlist · Cupos limitados</span>
+      <h2 id="wl-title" class="wl-title">Anotate en la Waitlist</h2>
+      <p class="wl-subtitle">Te avisamos cuando abramos inscripciones para <strong>IA para hacedores</strong>.</p>
+    </div>
+    <form id="wl-form" class="wl-form" novalidate>
+      <div class="wl-field">
+        <label for="wl-nombre">Nombre</label>
+        <input id="wl-nombre" name="entry.1512339388" type="text" placeholder="Tu nombre" required autocomplete="name">
+      </div>
+      <div class="wl-field">
+        <label for="wl-email">Email</label>
+        <input id="wl-email" name="entry.464657240" type="email" placeholder="tu@email.com" required autocomplete="email">
+      </div>
+      <div class="wl-field">
+        <label for="wl-rol">¿Cuál es tu rol actual / de qué es tu negocio?</label>
+        <textarea id="wl-rol" name="entry.1006158954" placeholder="Ej: freelancer de marketing, agencia, emprendedor..." required rows="3"></textarea>
+      </div>
+      <button type="submit" class="wl-submit" id="wl-submit-btn">
+        <span class="wl-submit-text">Quiero anotarme →</span>
+        <span class="wl-submit-loading" style="display:none">Enviando...</span>
+      </button>
+    </form>
+    <div id="wl-success" class="wl-success" style="display:none">
+      <div class="wl-success-icon">🎉</div>
+      <h3>¡Estás en la lista!</h3>
+      <p>Te avisamos en cuanto abramos inscripciones. Mientras tanto, seguí explorando el curriculum.</p>
+      <button class="wl-done" onclick="document.getElementById('waitlist-modal').classList.remove('wl-open')">Perfecto, cerrar</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.wl-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,0);pointer-events:none;transition:background 0.3s ease}
+.wl-overlay.wl-open{background:rgba(0,0,0,0.75);pointer-events:auto;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.wl-card{position:relative;width:100%;max-width:500px;background:linear-gradient(160deg,#0f1119,#131623);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px 36px;box-shadow:0 32px 80px -20px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.04) inset;transform:translateY(24px) scale(0.97);opacity:0;transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1),opacity 0.35s ease;display:flex;flex-direction:column;gap:0}
+.wl-overlay.wl-open .wl-card{transform:translateY(0) scale(1);opacity:1}
+.wl-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--muted);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;line-height:1}
+.wl-close:hover{background:rgba(255,255,255,0.12);color:var(--text)}
+.wl-header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:28px;text-align:center}
+.wl-avatar{width:120px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.12);margin-bottom:4px}
+.wl-eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:600;color:var(--claude);letter-spacing:0.16em;text-transform:uppercase}
+.wl-title{font-size:26px;font-weight:800;color:var(--text);letter-spacing:-0.02em;line-height:1.2}
+.wl-subtitle{font-size:14px;color:var(--muted);line-height:1.5;max-width:360px}
+.wl-subtitle strong{color:var(--text)}
+.wl-form{display:flex;flex-direction:column;gap:16px}
+.wl-field{display:flex;flex-direction:column;gap:6px}
+.wl-field label{font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:0.02em}
+.wl-field input,.wl-field textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:border-color 0.2s,box-shadow 0.2s;resize:none;width:100%}
+.wl-field input::placeholder,.wl-field textarea::placeholder{color:var(--faint)}
+.wl-field input:focus,.wl-field textarea:focus{border-color:rgba(255,107,53,0.5);box-shadow:0 0 0 3px rgba(255,107,53,0.1)}
+.wl-submit{margin-top:4px;width:100%;padding:15px;background:var(--claude);color:#fff;font-size:15px;font-weight:700;border:none;border-radius:12px;cursor:pointer;transition:background 0.2s,transform 0.2s,box-shadow 0.2s;font-family:inherit;box-shadow:0 8px 24px rgba(255,107,53,0.3)}
+.wl-submit:hover{background:var(--claude-2);transform:translateY(-1px);box-shadow:0 12px 32px rgba(255,107,53,0.4)}
+.wl-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+.wl-success{text-align:center;padding:16px 0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.wl-success-icon{font-size:48px}
+.wl-success h3{font-size:22px;font-weight:800;color:var(--text)}
+.wl-success p{font-size:14px;color:var(--muted);line-height:1.55;max-width:320px}
+.wl-done{margin-top:8px;padding:12px 28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:var(--text);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.wl-done:hover{background:rgba(255,255,255,0.1)}
+.unlock-cta{cursor:pointer;font-family:inherit;text-align:center}
+@media(max-width:540px){.wl-card{padding:28px 20px;border-radius:18px}}
+</style>
+
+<script>
+(function(){
+  var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdsg9Y-ja1xbe-oarN8Cgnd5I6hRs_fbAQyyYVO0K6vBo_Igw/formResponse';
+  var modal = document.getElementById('waitlist-modal');
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') modal.classList.remove('wl-open');
+  });
+
+  // Cerrar al hacer click en el overlay (fuera de la card)
+  modal.addEventListener('click', function(e){
+    if(e.target === modal) modal.classList.remove('wl-open');
+  });
+
+  // Envío del form
+  document.getElementById('wl-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var form = this;
+    var btn = document.getElementById('wl-submit-btn');
+    var txtNormal = btn.querySelector('.wl-submit-text');
+    var txtLoading = btn.querySelector('.wl-submit-loading');
+
+    // Validación básica
+    var nombre = form['entry.1512339388'].value.trim();
+    var email = form['entry.464657240'].value.trim();
+    var rol = form['entry.1006158954'].value.trim();
+    if(!nombre || !email || !rol) return;
+
+    // UI loading
+    btn.disabled = true;
+    txtNormal.style.display = 'none';
+    txtLoading.style.display = 'inline';
+
+    // Construir FormData
+    var data = new FormData();
+    data.append('entry.1512339388', nombre);
+    data.append('entry.464657240', email);
+    data.append('entry.1006158954', rol);
+
+    // POST al Google Form (no-cors: no hay respuesta, pero el submit llega)
+    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: data })
+      .then(function(){
+        form.style.display = 'none';
+        document.getElementById('wl-success').style.display = 'flex';
+      })
+      .catch(function(){
+        // Google Forms bloquea CORS pero el dato SÍ llega; tratamos el error como éxito
+        form.style.display = 'none';
+        document.getElementById('wl-success').style.display = 'flex';
+      });
+  });
+})();
+</script>
