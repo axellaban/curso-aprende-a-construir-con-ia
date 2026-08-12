@@ -627,14 +627,14 @@
     txtNormal.style.display = 'none';
     txtLoading.style.display = 'inline';
 
-    // Construir FormData
-    var data = new FormData();
+    // Construir URLSearchParams (Google Forms requiere url-encoded, no multipart)
+    var data = new URLSearchParams();
     data.append('entry.1512339388', nombre);
     data.append('entry.464657240', email);
     data.append('entry.1006158954', rol);
 
     // POST al Google Form (no-cors: no hay respuesta, pero el submit llega)
-    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: data })
+    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: data, headers: {'Content-Type': 'application/x-www-form-urlencoded'} })
       .then(function(){
         form.style.display = 'none';
         document.getElementById('wl-success').style.display = 'flex';
