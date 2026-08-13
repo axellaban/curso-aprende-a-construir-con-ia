@@ -38,9 +38,10 @@ Cosas que se rompen en silencio si no se respetan:
 - **Los conteos declarados.** El `<strong>N lecciones</strong>` de cada bloque tiene que
   coincidir con la cantidad real de `.out-card`, y el total del header con la suma de los
   bloques.
-- **Las 3 vueltas del Loop del MVP.** 1.1 promete que corre en las semanas 3, 6 y 9; las
-  vueltas cierran los bloques 3, 6 y 9. Mover una de esas lecciones de bloque rompe la
-  promesa sin que nada falle.
+- **Las 3 vueltas del Loop del MVP.** 1.1 promete que corre en prototipo, automatización
+  y beta; las vueltas cierran los bloques 3, 6 y 9. Mover una de esas lecciones de bloque
+  rompe la promesa sin que nada falle. La promesa se enuncia por contenido y no por
+  semanas ni por número de bloque, justamente para que aguante cualquier repactado.
 - **Sin referencias cruzadas por número.** Los bullets no citan otras lecciones por número
   (`7.3`, `1.9`): se referencian por contenido, así renumerar no deja texto mintiendo.
 - **Los íconos son promesas.** Cada herramienta con ícono en la cabecera de un bloque
